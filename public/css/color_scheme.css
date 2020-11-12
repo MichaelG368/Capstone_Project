@@ -1,0 +1,25 @@
+.highlight-color {
+  color: #4B8059;
+}
+header .fa-clock {
+  color: #4B8059;
+}
+#button {
+  color: #4B8059;
+}
+.e-face {
+  background-color: #B5CBBB;
+}
+.author_pic {
+  width: 300px;
+  height: 300px;
+}
+a {
+  color: #718075;
+}
+a:hover {
+  font-weight: bold;
+}
+footer {
+  text-align: center;
+}

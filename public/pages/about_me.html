@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://efrolic.github.io/css/assets/css/dist/efrolic.min.css">
+        <link rel="stylesheet" href="/css/color_scheme.css">
+        <title>20/20/20 Timer About the Creator (Final Project)</title>
+        <meta name="author" content="Michael Gutierrez"/>
+        <style>
+            @media all{
+                body {
+	            min-height: 350px;
+                    }
+            }
+        </style>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+        <script type="text/javascript" src="/scripts/jquery-3.5.0.min.js"></script>
+        <script type="text/javascript" src="/scripts/mustache.js"></script>
+        <script type="text/javascript" src="/scripts/access_date_retrieval.js"></script>
+    </head>
+    <body>
+        <main class="e-face e-fullscreen">
+        <header>
+            <nav class="e-nav fixed" role="navigation">
+                <a href="/pages/intro_page.html"><i class="far fa-clock fa-2x" role="img" aria-label="Logo"></i></a>
+                <h4>&nbsp;20/20/20 Timer</h4>
+                <label for="e-menu" class="e-btn white no-shadow no-desktop"><i class="fas fa-bars"></i></label>
+                <input type="checkbox" id="e-menu">
+                <div class="e-menu">
+                  <i class="e-distribution"></i>
+                  <a class="e-menu-item" href="/pages/intro_page.html">Home</a>
+                  <a class="e-menu-item" href="/pages/more_info.html">Info About Computer Vision Syndrome</a>
+                  <a class="e-menu-item" href="/pages/about_me.html">About The Creator</a>
+                  <a class="e-menu-item" href="/login">Eye Profile</a>
+                  <a class="e-btn outlined" id="button" href="/pages/active_timer.html">Start Active Timer</a>
+                </div>
+            </nav>
+        </header>
+        <section class="face-body centered">
+            <div class="e-container p-2" role="article">
+            <h2>20/20/20 Timer: About the Creator</h2>
+                <p>
+                    Hello, I'm Michael Gutierrez, amateur web designer and creator of this 20/20/20 timer. I am 26 years old and I am working towards earning my MS in Software Development from Maryville University in St. Louis, Missouri; 
+                    I had previously earned my BA from the University of Texas at El Paso. This web application stemmed from a personal desire to monitor my own time spent working in front of screens. Hopefully, this site can inspire 
+                    others to follow the 20/20/20 rule and help them engage in computer-based work in a safe and healthy manner.  
+                </p>
+            <img src="https://scontent-dfw5-2.xx.fbcdn.net/v/t1.0-9/69717662_2179431399016395_3647438179411165184_o.jpg?_nc_cat=109&ccb=2&_nc_sid=09cbfe&_nc_ohc=6Qvy_IDOzU0AX-WFAyZ&_nc_ht=scontent-dfw5-2.xx&oh=ae8a23064e141b0709cb5f8fb7e364d9&oe=5FB73894" class= "author_pic" alt="Author Picture" role="img">
+            </div>
+        </section>
+        <footer>
+            <hr></hr>
+            <address>
+                <!--Author information and various credits-->
+                <p>Written by Michael Gutierrez</p>
+                <p>Contact email: mgutierrez2@live.maryville.edu</p>
+                <p>CSS created by Efrain Peralta (<a href="https://efrolic.github.io/css/" target=_blank>Source</a>)</p>
+                <script id="template" type="x-tmpl-mustache">
+                    Access Date: {{access_date.month_prefix}}{{access_date.month}}/{{access_date.day}}/{{access_date.year}}
+                </script>
+                <div id="target"></div>
+            </address>
+        </footer>
+        </main>
+    </body>   
+</html>
