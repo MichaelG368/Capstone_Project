@@ -1,3 +1,1 @@
-# Capstone Project
-
 This purpose of this project is to build a web application that helps individuals reduce eye strain via the 20/20/20 method. More specifically, this web application will provide users with two different timers: an active timer, which runs for 20 minutes, and a rest timer, which runs for 20 seconds. During the active period, users are free to work in front of their screens uninterrupted; during the rest period, users are encouraged to look at an object or area 20 feet away from them to give their eyes a break before returning to work. Additionally, this project will allow users to track certain information relating to their eye health via the Eye Profile system. 
