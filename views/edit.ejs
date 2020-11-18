@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://efrolic.github.io/css/assets/css/dist/efrolic.min.css">
+        <link rel="stylesheet" href="/css/color_scheme.css">
+        <title>20/20/20 Eye Profile (Final Project)</title>
+        <meta name="author" content="Michael Gutierrez"/>
+        <style>
+            @media all{
+                body {
+	            min-height: 350px;
+                    }
+            }
+        </style>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+        <script type="text/javascript" src="/scripts/jquery-3.5.0.min.js"></script>
+        <script type="text/javascript" src="/scripts/mustache.js"></script>
+        <script type="text/javascript" src="/scripts/access_date_retrieval.js"></script>
+    </head>
+    <body>
+        <main class="e-face e-fullscreen">
+        <header>
+            <nav class="e-nav fixed" role="navigation">
+                <a href="/pages/intro_page.html"><i class="far fa-clock fa-2x" role="img" aria-label="Logo"></i></a>
+                <h4>&nbsp;20/20/20 Timer</h4>
+                <label for="e-menu" class="e-btn white no-shadow no-desktop"><i class="fas fa-bars"></i></label>
+                <input type="checkbox" id="e-menu">
+                <div class="e-menu">
+                  <i class="e-distribution"></i>
+                  <a class="e-menu-item" href="/pages/intro_page.html">Home</a>
+                  <a class="e-menu-item" href="/pages/more_info.html">Info About Computer Vision Syndrome</a>
+                  <a class="e-menu-item" href="/pages/about_me.html">About The Creator</a>
+                  <a class="e-menu-item" href="/login">Eye Profile</a>
+                  <a class="e-btn" id="button" href="/pages/active_timer.html">Start Active Timer</a>
+                </div>
+            </nav>
+        </header>
+        <section class="face-body centered">
+            <div class="e-container p-2" role="article">
+                <h2>Edit Eye Profile Details</h2>
+                <hr>
+                <form class="e-cols no-gap" action="/edit_profile?_method=PUT" method="POST">
+                    <div class="e-col-2 e-form-group">
+                        <label class="e-label">Email</label>
+                    </div>
+                    <div class="e-col e-form-group">
+                        <input class="e-control" name="email" required value= <%= email %>>
+                    </div>
+                    <i class="w-100"></i>
+                    <div class="e-col-2 e-form-group">
+                        <label class="e-label">Password</label>
+                    </div>
+                    <div class="e-col e-form-group">
+                        <input class="e-control" required name="password">
+                    </div>
+                    <i class="w-100"></i>
+                    <div class="e-col-2 e-form-group">
+                        <label class="e-label">First Name</label>
+                    </div>
+                    <div class="e-col e-form-group">
+                        <input class="e-control" name="first_name" required value= "<%= first_name %>""></input>
+                    </div>
+                    <div class="e-col-2 e-form-group">
+                        <label class="e-label">Last Name</label>
+                    </div>
+                    <div class="e-col e-form-group">
+                        <input class="e-control" name="last_name" required value= "<%= last_name %>""></input>
+                    </div>
+                    <i class="w-100"></i>
+                    <div class="e-col-2 e-form-group">
+                        <label class="e-label">O.D. (If Applicable)</label>
+                    </div>
+                    <div class="e-col e-form-group">
+                        <input class="e-control" name="od" value= "<%= od %>""></input>
+                    </div>
+                    <div class="e-col-2 e-form-group">
+                        <label class="e-label">O.S. (If Applicable)</label>
+                    </div>
+                    <div class="e-col e-form-group">
+                        <input class="e-control" name="os" value= "<%= os %>""></input>
+                    </div>
+                    <i class="w-100"></i>
+                    <div class="e-col-2 e-form-group">
+                        <label class="e-label">Doctor Info (GP)</label>
+                    </div>
+                    <div class="e-col e-form-group">
+                        <input class="e-control" name="med_contact" value= "<%= med_contact %>""></input>
+                    </div>
+                    <i class="w-100"></i>
+                    <div class="e-col-2 e-form-group">
+                        <label class="e-label">Optometrist Info (If Applicable)</label>
+                    </div>
+                    <div class="e-col e-form-group">
+                        <input class="e-control" name="opto" value= "<%= opto %>""></input>
+                    </div>
+                    <i class="w-100"></i>
+                    <div class="e-col-2 e-form-group">
+                        <label class="e-label">Conditions (If Applicable)</label>
+                    </div>
+                    <div class="e-col e-form-group">
+                        <input class="e-control" name="conditions" value= "<%= conditions %>"></input>
+                    </div>
+                    <i class="w-100"></i>
+                    <div class="e-col e-form-group">
+                        <button class="e-btn" id="button" type="submit">Confirm Changes</button>
+                    </div>
+                    <div class="e-col e-form-group">
+                        <a class="e-btn" id="button" href="/">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <footer>
+            <hr></hr>
+            <address>
+                <!--Author information and various credits-->
+                <p>Written by Michael Gutierrez</p>
+                <p>Contact email: mgutierrez2@live.maryville.edu</p>
+                <p>CSS created by Efrain Peralta (<a href="https://efrolic.github.io/css/" target=_blank>Source</a>)</p>
+                <script id="template" type="x-tmpl-mustache">
+                    Access Date: {{access_date.month_prefix}}{{access_date.month}}/{{access_date.day}}/{{access_date.year}}
+                </script>
+                <div id="target"></div>
+            </address>
+        </footer>
+        </main>
+    </body>   
+</html>
