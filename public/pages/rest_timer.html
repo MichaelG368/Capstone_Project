@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://efrolic.github.io/css/assets/css/dist/efrolic.min.css">
+        <link rel="stylesheet" href="/css/color_scheme.css">
+        <link rel="stylesheet" href="/css/timer.css">
+        <title>20/20/20 Rest Timer (Final Project)</title>
+        <meta name="author" content="Michael Gutierrez"/>
+        <style>
+            @media all{
+                body {
+	            min-height: 350px;
+                    }
+            }
+        </style>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+        <script type="text/javascript" src="/scripts/jquery-3.5.0.min.js"></script>
+        <script type="text/javascript" src="/scripts/mustache.js"></script>
+        <script type="text/javascript" src="/scripts/access_date_retrieval.js"></script>
+    </head>
+    <body>
+        <main class="e-face e-fullscreen">
+        <header>
+            <nav class="e-nav fixed" role="navigation">
+                <a href="/pages/intro_page.html"><i class="far fa-clock fa-2x" role="img" aria-label="Logo"></i></a>
+                <h4>&nbsp;20/20/20 Timer</h4>
+                <label for="e-menu" class="e-btn white no-shadow no-desktop"><i class="fas fa-bars"></i></label>
+                <input type="checkbox" id="e-menu">
+                <div class="e-menu">
+                  <i class="e-distribution"></i>
+                  <a class="e-menu-item" href="/pages/intro_page.html">Home</a>
+                  <a class="e-menu-item" href="/pages/more_info.html">Info About Computer Vision Syndrome</a>
+                  <a class="e-menu-item" href="/pages/about_me.html">About The Creator</a>
+                  <a class="e-menu-item" href="/login">Eye Profile</a>
+                  <a class="e-btn outlined" id="button" href="/pages/active_timer.html">Restart Active Timer</a>
+                </div>
+            </nav>
+        </header>
+        <!--Creates the rest timer via the separate rest_timer.js code-->
+        <section class="face-body centered p-1">
+            <h2>20 Second (Rest) Timer</h2>
+        <div class="container">
+            <div class="setters">
+                <div class="minutes-set">
+                </div>
+                <div class="seconds-set">
+                </div>
+        </div>
+                 <div class="circle">
+                    <svg width="300" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                       <g transform="translate(110,110)">
+                          <circle r="100" class="e-c-base"/>
+                          <g transform="rotate(-90)">
+                             <circle r="100" class="e-c-progress"/>
+                             <g id="e-pointer">
+                                <circle cx="100" cy="0" r="8" class="e-c-pointer"/>
+                             </g>
+                          </g>
+                       </g>
+                    </svg>
+                 </div>
+                 <div class="controls">
+                    <div class="display-remain-time" role="timer">00:20</div>
+                    <button class="play" id="pause" role="button"></button>
+                 </div>
+        </div>
+        <script src="/scripts/rest_timer.js"></script>
+        </section>
+        <footer>
+            <hr></hr>
+            <address>
+                <!--Author information and various credits-->
+                <p>Written by Michael Gutierrez</p>
+                <p>Contact email: mgutierrez2@live.maryville.edu</p>
+                <p>CSS created by Efrain Peralta (<a href="https://efrolic.github.io/css/" target=_blank>Source</a>)</p>
+                <p>Timer created by Sergey Bunas (<a href="https://codepen.io/Serjobas/pen/GvrKRB" target=_blank>Source</a>)</p>
+                <script id="template" type="x-tmpl-mustache">
+                    Access Date: {{access_date.month_prefix}}{{access_date.month}}/{{access_date.day}}/{{access_date.year}}
+                </script>
+                <div id="target"></div>
+            </address>
+        </footer>
+        </main>
+    </body>   
+</html>
