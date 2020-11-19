@@ -102,6 +102,15 @@ app.get('/login', checkNotAuthenticated, (req, res) => {
     res.render('login.ejs')
 })
 
+ProfileCollection.find().toArray()
+        .then(users => {
+            initalizePassport(
+                passport, 
+                email => users.find(user => user.email === email),
+                id => users.find(user => user.id === id)
+                )        
+        })
+
 app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login',
