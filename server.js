@@ -49,6 +49,12 @@ MongoClient.connect('mongodb+srv://MJGAdmin:TheDBuserf0rmyprojectDB.@profiles.bb
                 )        
         })
     
+    app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
+        successRedirect: '/',
+        failureRedirect: '/login',
+        failureFlash: true
+    }))
+    
     app.put('/edit_profile', async (req, res) => {
         try {
             const hashedPassword = await bcrypt.hash(req.body.password, 10)
@@ -101,21 +107,6 @@ app.get('/', checkAuthenticated, (req, res) => {
 app.get('/login', checkNotAuthenticated, (req, res) => {
     res.render('login.ejs')
 })
-
-ProfileCollection.find().toArray()
-        .then(users => {
-            initalizePassport(
-                passport, 
-                email => users.find(user => user.email === email),
-                id => users.find(user => user.id === id)
-                )        
-        })
-
-app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login',
-    failureFlash: true
-}))
 
 app.get('/register', checkNotAuthenticated, async (req, res) => {
     res.render('register.ejs')
