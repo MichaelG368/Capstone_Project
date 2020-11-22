@@ -9,6 +9,7 @@ const passport = require('passport')
 const flash = require('express-flash')
 const session = require('express-session')
 const methodOverride = require('method-override')
+const { Server } = require('mongodb')
 const MongoClient = require('mongodb').MongoClient
 
 MongoClient.connect('mongodb+srv://MJGAdmin:TheDBuserf0rmyprojectDB.@profiles.bbaev.mongodb.net/EyeProfileDetails.EyeProfiles?retryWrites=true&w=majority', { useUnifiedTopology: true }, (err, client) => {
@@ -32,15 +33,18 @@ MongoClient.connect('mongodb+srv://MJGAdmin:TheDBuserf0rmyprojectDB.@profiles.bb
                 opto: req.body.opto,
                 conditions: req.body.conditions
             })
-            res.redirect('/login')
+            req.logOut()
+            res.redirect('/')
         } catch{
             res.redirect('/register')
         }
     })
 
     const initalizePassport = require('./passport-config')
-
-    ProfileCollection.find().toArray()
+    
+    app.get('/login', checkNotAuthenticated, (req, res) => {
+        res.render('login.ejs')
+        ProfileCollection.find().toArray()
         .then(users => {
             initalizePassport(
                 passport, 
@@ -48,12 +52,29 @@ MongoClient.connect('mongodb+srv://MJGAdmin:TheDBuserf0rmyprojectDB.@profiles.bb
                 id => users.find(user => user.id === id)
                 )        
         })
-    
-    app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
+    })
+
+        app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
         successRedirect: '/',
         failureRedirect: '/login',
         failureFlash: true
     }))
+
+    app.get('/', checkAuthenticated, (req, res) => {
+        ProfileCollection.findOne({ id: req.user.id })
+        .then(users => {
+            res.render('index.ejs', {first_name: users.first_name, last_name: users.last_name, email: users.email, od: users.od, 
+                os: users.os, med_contact: users.med_contact, opto: users.opto, conditions: users.conditions})    
+        })
+    })
+
+    app.get('/edit_profile', checkAuthenticated, (req, res) => {
+        ProfileCollection.findOne({ id: req.user.id })
+        .then(users => {
+        res.render('edit.ejs', {first_name: users.first_name, last_name: users.last_name, email: users.email, od: users.od, 
+            os: users.os, med_contact: users.med_contact, opto: users.opto, conditions: users.conditions})
+        })
+    })
     
     app.put('/edit_profile', async (req, res) => {
         try {
@@ -71,6 +92,7 @@ MongoClient.connect('mongodb+srv://MJGAdmin:TheDBuserf0rmyprojectDB.@profiles.bb
                 opto: req.body.opto,
                 conditions: req.body.conditions} }
                 )
+            req.logOut()
             res.redirect('/')
         } catch{
             res.redirect('/login')
@@ -82,7 +104,7 @@ MongoClient.connect('mongodb+srv://MJGAdmin:TheDBuserf0rmyprojectDB.@profiles.bb
             { id: req.user.id }
         )
         req.logOut()
-        res.redirect('/login')
+        res.redirect('/')
     })
 
 })
@@ -99,31 +121,16 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(methodOverride('_method'))
 
-app.get('/', checkAuthenticated, (req, res) => {
-    res.render('index.ejs', {first_name: req.user.first_name, last_name: req.user.last_name, email: req.user.email, od: req.user.od, 
-        os: req.user.os, med_contact: req.user.med_contact, opto: req.user.opto, conditions: req.user.conditions})
-})
-
-app.get('/login', checkNotAuthenticated, (req, res) => {
-    res.render('login.ejs')
-})
-
 app.get('/register', checkNotAuthenticated, async (req, res) => {
     res.render('register.ejs')
 })
 
-app.get('/edit_profile', checkAuthenticated, (req, res) => {
-    res.render('edit.ejs', {first_name: req.user.first_name, last_name: req.user.last_name, email: req.user.email, od: req.user.od, 
-        os: req.user.os, med_contact: req.user.med_contact, opto: req.user.opto, conditions: req.user.conditions})
-})
-
 app.get('/logout', (req, res) => {
     req.logOut()
-    res.redirect('/login')
+    res.redirect('/')
 })
 
 app.use(express.static(__dirname + '/public'));
-
 
 function checkAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
